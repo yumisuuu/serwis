@@ -9,7 +9,7 @@ window.dodajOpinie = async function () {
     const tresc = document.getElementById("tresc").value;
     const gwiazdy = document.getElementById("gwiazdy").value;
 
-    if (!imie || !tresc) return alert("Uzupełnij wszystkie pola");
+    if (!imie || !tresc) return alert("Uzupełnij pola");
 
     await addDoc(opinieRef, {
         imie,
