@@ -1,90 +1,54 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serwis Elektroniki</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natan Tech</title>
+<link rel="stylesheet" href="style.css">
+
+<script type="module" src="firebase.js"></script>
+<script type="module" src="script.js"></script>
 </head>
 <body>
 
-<header>
-    <div class="container">
-        <h1>Serwis elektroniki</h1>
-        <p>Doświadczony serwis laptopów i komputerów</p>
-        <a href="#kontakt" class="btn">Skontaktuj się</a>
-    </div>
+<header class="glass">
+    <h1>Natan Tech</h1>
+    <p>Liquid Performance • Apple-Level Service</p>
 </header>
 
-<section id="o-mnie">
-    <div class="container">
-        <h2>O mnie</h2>
-        <p>
-            Cześć! Zajmuję się przyspieszaniem laptopów,
-            diagnostyką sprzętu oraz usuwaniem wszelkich wirusów komputerowych.
-            Działam szybko, skutecznie i to za darmo.
-        </p>
+<section class="glass">
+    <h2>Usługi</h2>
+    <div class="cards">
+        <div class="card">🚀 Przyspieszanie laptopów</div>
+        <div class="card">🛡 Usuwanie wirusów</div>
+        <div class="card">🔍 Diagnostyka</div>
+        <div class="card">💾 Instalacja systemu</div>
     </div>
 </section>
 
-<section id="uslugi">
-    <div class="container">
-        <h2>Moje usługi</h2>
+<section class="glass">
+    <h2>Opinie klientów</h2>
+    <div id="opinie"></div>
 
-        <div class="cards">
-            <div class="card">
-                <h3>🚀 Przyspieszanie laptopów</h3>
-                <p>Optymalizacja systemu i przyspieszenie działania.</p>
-            </div>
+    <h3>Dodaj opinię</h3>
+    <input id="imie" placeholder="Imię">
+    <textarea id="tresc" placeholder="Opinia"></textarea>
 
-            <div class="card">
-                <h3>🔍 Diagnostyka</h3>
-                <p>Pełna analiza sprzętu i wykrywanie usterek.</p>
-            </div>
+    <select id="gwiazdy">
+        <option value="5">⭐⭐⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="1">⭐</option>
+    </select>
 
-            <div class="card">
-                <h3>🛡️ Usuwanie wirusów</h3>
-                <p>Skuteczne czyszczenie i zabezpieczanie systemu.</p>
-            </div>
-
-            <div class="card">
-                <h3>💾 Instalacja systemu</h3>
-                <p>Instalacja systemu i konfiguracja.</p>
-            </div>
-        </div>
-    </div>
+    <button onclick="dodajOpinie()">Dodaj opinię</button>
 </section>
 
-<!-- NOWA SEKCJA OPINII -->
-<section id="opinie">
-    <div class="container">
-        <h2>Opinie klientów</h2>
-
-        <div id="opinie-lista" class="cards"></div>
-
-        <div class="formularz-opinii">
-            <h3>Dodaj opinię</h3>
-            <input type="text" id="imie" placeholder="Twoje imię">
-            <textarea id="tresc" placeholder="Twoja opinia"></textarea>
-            <button onclick="dodajOpinie()" class="btn">Dodaj opinię</button>
-        </div>
-    </div>
-</section>
-
-<section id="kontakt">
-    <div class="container">
-        <h2>Kontakt</h2>
-        <p><strong>Telefon:</strong> +48 510 371 446</p>
-        <p><strong>Email:</strong> natanrub9@gmail.com</p>
-        <p><strong>Lokalizacja:</strong> Dębno, zachodniopomorskie</p>
-    </div>
-</section>
-
-<footer>
-    <p>© 2026 Serwis Laptopów</p>
-    <p>Twoje dane są chronione przez "SCT" - autorskie zabezpieczenia.</p>
+<footer class="glass">
+    <p>© 2026 Natan Tech</p>
+    <a href="admin.html">Panel admina</a>
 </footer>
 
-<script src="script.js"></script>
 </body>
 </html>
