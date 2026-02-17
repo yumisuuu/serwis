@@ -1,44 +1,40 @@
+import { db } from "./firebase.js";
+import { collection, addDoc, getDocs }
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-document.addEventListener("DOMContentLoaded", wczytajOpinie);
+const opinieRef = collection(db, "opinie");
 
-function dodajOpinie() {
+window.dodajOpinie = async function () {
     const imie = document.getElementById("imie").value;
     const tresc = document.getElementById("tresc").value;
+    const gwiazdy = document.getElementById("gwiazdy").value;
 
-    if (imie === "" || tresc === "") {
-        alert("Uzupełnij wszystkie pola!");
-        return;
-    }
+    if (!imie || !tresc) return alert("Uzupełnij wszystkie pola");
 
-    const opinia = {
-        imie: imie,
-        tresc: tresc
-    };
+    await addDoc(opinieRef, {
+        imie,
+        tresc,
+        gwiazdy: parseInt(gwiazdy),
+        data: Date.now()
+    });
 
-    let opinie = JSON.parse(localStorage.getItem("opinie")) || [];
-    opinie.push(opinia);
-    localStorage.setItem("opinie", JSON.stringify(opinie));
+    wczytajOpinie();
+};
 
-    document.getElementById("imie").value = "";
-    document.getElementById("tresc").value = "";
+async function wczytajOpinie() {
+    const snapshot = await getDocs(opinieRef);
+    const container = document.getElementById("opinie");
+    container.innerHTML = "";
 
-    wyswietlOpinie();
-}
-
-function wczytajOpinie() {
-    wyswietlOpinie();
-}
-
-function wyswietlOpinie() {
-    const lista = document.getElementById("opinie-lista");
-    lista.innerHTML = "";
-
-    let opinie = JSON.parse(localStorage.getItem("opinie")) || [];
-
-    opinie.forEach(opinia => {
-        const div = document.createElement("div");
-        div.classList.add("card");
-        div.innerHTML = `<h3>${opinia.imie}</h3><p>${opinia.tresc}</p>`;
-        lista.appendChild(div);
+    snapshot.forEach(docItem => {
+        const op = docItem.data();
+        container.innerHTML += `
+        <div class="card">
+            <strong>${op.imie}</strong><br>
+            ${"⭐".repeat(op.gwiazdy)}<br>
+            ${op.tresc}
+        </div>`;
     });
 }
+
+wczytajOpinie();
