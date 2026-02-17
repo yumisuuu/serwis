@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Natan Tech</title>
+
 <link rel="stylesheet" href="style.css">
 
 <script type="module" src="firebase.js"></script>
@@ -11,10 +12,14 @@
 </head>
 <body>
 
-<header class="glass">
+<div class="background"></div>
+
+<main>
+
+<section class="glass hero">
     <h1>Natan Tech</h1>
-    <p>Liquid Performance • Apple-Level Service</p>
-</header>
+    <p>Profesjonalne przyspieszanie i serwis laptopów</p>
+</section>
 
 <section class="glass">
     <h2>Usługi</h2>
@@ -28,27 +33,26 @@
 
 <section class="glass">
     <h2>Opinie klientów</h2>
-    <div id="opinie"></div>
 
-    <h3>Dodaj opinię</h3>
-    <input id="imie" placeholder="Imię">
-    <textarea id="tresc" placeholder="Opinia"></textarea>
+    <div id="opinie" class="opinie"></div>
 
-    <select id="gwiazdy">
-        <option value="5">⭐⭐⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="2">⭐⭐</option>
-        <option value="1">⭐</option>
-    </select>
+    <div class="form">
+        <input id="imie" placeholder="Imię">
+        <textarea id="tresc" placeholder="Twoja opinia"></textarea>
 
-    <button onclick="dodajOpinie()">Dodaj opinię</button>
+        <select id="gwiazdy">
+            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="1">⭐</option>
+        </select>
+
+        <button onclick="dodajOpinie()">Dodaj opinię</button>
+    </div>
 </section>
 
-<footer class="glass">
-    <p>© 2026 Natan Tech</p>
-    <a href="admin.html">Panel admina</a>
-</footer>
+</main>
 
 </body>
 </html>
