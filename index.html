@@ -127,6 +127,7 @@ button:hover {
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
 <script>
+// 🔹 KONFIGURACJA FIREBASE
 const firebaseConfig = {
   apiKey: "AIzaSyCko-H-P5WdD8u-9JN_h_euea1aHQnUzv8",
   authDomain: "serwiskomlab-80aeb.firebaseapp.com",
@@ -137,14 +138,22 @@ const firebaseConfig = {
   measurementId: "G-YK88ET8W97"
 };
 
+// 🔹 INICJALIZACJA
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const opinieRef = db.collection("opinie");
 
+// 🔹 WCZYTYWANIE OPINII
 function wczytajOpinie() {
+    const container = document.getElementById("opinie");
+    container.innerHTML = "<p>Ładowanie opinii…</p>";
+
     opinieRef.get().then(snapshot => {
-        const container = document.getElementById("opinie");
         container.innerHTML = "";
+        if(snapshot.empty){
+            container.innerHTML = "<p>Brak opinii. Bądź pierwszy!</p>";
+            return;
+        }
         snapshot.forEach(doc => {
             const op = doc.data();
             container.innerHTML += `
@@ -155,9 +164,13 @@ function wczytajOpinie() {
                 </div>
             `;
         });
+    }).catch(err => {
+        container.innerHTML = "<p>Błąd ładowania opinii.</p>";
+        console.error(err);
     });
 }
 
+// 🔹 DODAWANIE OPINII
 document.getElementById("dodaj").addEventListener("click", () => {
     const imie = document.getElementById("imie").value.trim();
     const tresc = document.getElementById("tresc").value.trim();
@@ -171,10 +184,15 @@ document.getElementById("dodaj").addEventListener("click", () => {
         document.getElementById("imie").value="";
         document.getElementById("tresc").value="";
         wczytajOpinie();
+    }).catch(err => {
+        alert("Błąd dodawania opinii");
+        console.error(err);
     });
 });
 
+// 🔹 URUCHAMIAMY NA START
 wczytajOpinie();
 </script>
+
 </body>
 </html>
