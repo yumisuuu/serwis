@@ -7,6 +7,9 @@
 
 body {
     min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: linear-gradient(135deg, #dfe9f3, #ffffff);
     transition: 0.4s;
     padding: 20px;
@@ -17,14 +20,7 @@ body.dark {
     color: white;
 }
 
-.layout {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 30px;
-}
-
-.center-content {
+.container {
     width: 700px;
     display: flex;
     flex-direction: column;
@@ -112,7 +108,8 @@ input:checked + .slider::before {
     transform: translateX(24px);
 }
 
-    .center-content {
+@media(max-width: 768px) {
+    .container {
         width: 100%;
     }
 }
